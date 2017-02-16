@@ -1,19 +1,19 @@
 class Cell {
-    private CellStatus status = CellStatus.ALIVE;
+    private Boolean isAlive = Boolean.TRUE;
 
-    public Cell(CellStatus status) {
-        this.status = status;
+    public Cell(Boolean isAlive) {
+        this.isAlive = isAlive;
     }
 
     boolean isAlive() {
-        return CellStatus.ALIVE == status;
+        return Boolean.TRUE == isAlive;
     }
 
     void kill() {
-        status = CellStatus.DEAD;
+        isAlive = Boolean.FALSE;
     }
 
     void revive() {
-        status = CellStatus.ALIVE;
+        isAlive = Boolean.TRUE;
     }
 }

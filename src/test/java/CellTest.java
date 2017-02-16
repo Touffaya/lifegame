@@ -11,10 +11,10 @@ public class CellTest {
 
     @Test
     @Parameters(method = "parameters")
-    public void givenNewCell_thenShouldHaveStatus(CellStatus status, boolean expected)
+    public void givenNewCell_thenShouldHaveStatus(Boolean isAlive, boolean expected)
         throws Throwable {
         // given
-        Cell cell = new Cell(status);
+        Cell cell = new Cell(isAlive);
 
         // then
         assertThat(cell.isAlive()).isEqualTo(expected);
@@ -23,7 +23,7 @@ public class CellTest {
     @Test
     public void givenAliveCell_whenKill_thenShouldBeDead() throws Throwable {
         // given
-        Cell cell = new Cell(CellStatus.ALIVE);
+        Cell cell = new Cell(Boolean.TRUE);
 
         // when
         cell.kill();
@@ -35,10 +35,7 @@ public class CellTest {
     @Test
     public void givenDeadCell_whenRevive_thenShouldBeAlive() throws Throwable {
         // given
-        Cell cell = new Cell(CellStatus.DEAD);
-
-        // given
-        cell.kill();
+        Cell cell = new Cell(Boolean.FALSE);
 
         // when
         cell.revive();
@@ -49,8 +46,8 @@ public class CellTest {
 
     private Object[] parameters() {
         return new Object[]{
-            new Object[]{CellStatus.ALIVE, true},
-            new Object[]{CellStatus.DEAD, false},
+            new Object[]{Boolean.TRUE, true},
+            new Object[]{Boolean.FALSE, false},
         };
     }
 }
